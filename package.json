@@ -4,7 +4,7 @@
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
-        <version>5.13.1</version>
+        <version>5.13.8</version>
     </dependency>
 
     <dependency>
@@ -16,7 +16,7 @@
     <dependency>
         <groupId>com.microsoft.playwright</groupId>
         <artifactId>playwright</artifactId>
-        <version>1.54.0</version>
+        <version>1.44.0</version>
     </dependency>
 
 </dependencies>
