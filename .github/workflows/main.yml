@@ -27,15 +27,19 @@ jobs:
           echo "Prod:"
           ls -la prod
 
-      - name: Compare pom.xml files
+      - name: Compare dependency versions
         shell: bash
         run: |
-          echo "Comparing pom.xml files..."
+          echo "=== Dependency Version Comparison ==="
 
-          if diff pom.xml prod/pom.xml > diff.txt; then
-            echo "✅ No differences found."
+          grep -E "<groupId>|<artifactId>|<version>" pom.xml > sandbox.txt
+          grep -E "<groupId>|<artifactId>|<version>" prod/pom.xml > prod.txt
+
+          if diff sandbox.txt prod.txt > diff.txt; then
+            echo "✅ All dependency versions match."
           else
-            echo "❌ Differences found:"
+            echo "❌ Version mismatches found:"
+            echo ""
             cat diff.txt
             exit 1
           fi
