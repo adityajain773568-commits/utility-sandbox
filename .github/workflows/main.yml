@@ -18,7 +18,7 @@ jobs:
         with:
           repository: adityajain773568-commits/unity-prod
           path: prod
-          token: ${{ secrets.MY_PAT}}
+          
 
       - name: Setup Java
         uses: actions/setup-java@v4
