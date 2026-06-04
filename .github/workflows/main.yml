@@ -18,13 +18,24 @@ jobs:
         with:
           repository: adityajain773568-commits/unity-prod
           path: prod
-          
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
+      - name: Verify files
+        run: |
+          echo "Sandbox:"
+          ls -la
+          echo ""
+          echo "Prod:"
+          ls -la prod
 
-      - name: Run Comparison
-        run: java ComparePom.java
+      - name: Compare pom.xml files
+        shell: bash
+        run: |
+          echo "Comparing pom.xml files..."
+
+          if diff pom.xml prod/pom.xml > diff.txt; then
+            echo "✅ No differences found."
+          else
+            echo "❌ Differences found:"
+            cat diff.txt
+            exit 1
+          fi
